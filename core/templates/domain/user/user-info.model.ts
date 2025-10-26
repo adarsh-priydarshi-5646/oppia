@@ -24,6 +24,7 @@ export enum UserRoles {
   TRANSLATION_ADMIN = 'TRANSLATION_ADMIN',
   TRANSLATION_COORDINATOR = 'TRANSLATION_COORDINATOR',
   VOICEOVER_ADMIN = 'VOICEOVER_ADMIN',
+  RELEASE_COORDINATOR = 'RELEASE_COORDINATOR',
 }
 
 export interface UserInfoBackendDict {
@@ -141,6 +142,10 @@ export class UserInfo {
 
   isQuestionCoordinator(): boolean {
     return this._roles.includes(UserRoles.QUESTION_COORDINATOR);
+  }
+
+  isReleaseCoordinator(): boolean {
+    return this._roles.includes(UserRoles.RELEASE_COORDINATOR);
   }
 
   isTopicManager(): boolean {

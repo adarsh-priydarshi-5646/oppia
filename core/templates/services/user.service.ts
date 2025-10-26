@@ -156,4 +156,22 @@ export class UserService {
       return info.isBlogAdmin() || info.isBlogPostEditor();
     });
   }
+
+  async canUserAccessReleaseCoordinatorPage(): Promise<boolean> {
+    return this.getUserInfoAsync().then(userInfo => {
+      return userInfo.isLoggedIn() && userInfo.isReleaseCoordinator();
+    });
+  }
+
+  async canUserAccessContributorDashboardAdminPage(): Promise<boolean> {
+    return this.getUserInfoAsync().then(userInfo => {
+      return (
+        userInfo.isLoggedIn() &&
+        (userInfo.isQuestionAdmin() ||
+          userInfo.isTranslationAdmin() ||
+          userInfo.isQuestionCoordinator() ||
+          userInfo.isTranslationCoordinator())
+      );
+    });
+  }
 }
